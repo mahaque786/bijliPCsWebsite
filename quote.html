@@ -16,6 +16,126 @@
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <style>
+    /* Quote Page Specific Styles */
+    .quote-section {
+      padding-top: 140px;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+    
+    .quote-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-label {
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary, #6366f1);
+      margin-bottom: 16px;
+    }
+    
+    .section-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--color-text, #1a1a2e);
+    }
+    
+    .section-header p {
+      font-size: 1.125rem;
+      color: var(--color-text-muted, #64748b);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .quote-type-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    @media (max-width: 600px) {
+      .quote-type-selector {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .quote-type-btn {
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    
+    .quote-type-btn:hover {
+      border-color: var(--color-primary, #6366f1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+    }
+    
+    .quote-type-btn.active {
+      border-color: var(--color-primary, #6366f1);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+    }
+    
+    .quote-type-btn h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text, #1a1a2e);
+    }
+    
+    .quote-type-btn p {
+      font-size: 0.875rem;
+      color: var(--color-text-muted, #64748b);
+      margin: 0;
+    }
+    
+    .quote-forms {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    
+    .quote-form {
+      display: none;
+    }
+    
+    .quote-form.active {
+      display: block;
+    }
+    
+    .quote-form iframe {
+      width: 100%;
+      max-width: 100%;
+      min-height: 3400px;
+      border: none;
+      display: block;
+    }
+    
+    #business-form iframe {
+      min-height: 3650px;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -45,7 +165,7 @@
   </nav>
 
   <!-- Quote Section -->
-  <section class="quote-section" style="padding-top: 140px; min-height: 100vh;">
+  <section class="quote-section">
     <div class="container">
       <div class="quote-container">
         <div class="section-header fade-in">
@@ -66,28 +186,26 @@
           </button>
         </div>
         
-        <!-- Quote Form -->
-<!-- Quote Type Selector -->
-<div class="quote-type-selector fade-in">
-  <button type="button" class="quote-type-btn active" data-type="consumer">
-    <h4>🏠 Home / Personal</h4>
-    <p>Custom PCs, home theatre, NAS, upgrades</p>
-  </button>
-  <button type="button" class="quote-type-btn" data-type="business">
-    <h4>🏢 Business / Studio</h4>
-    <p>Multi-system deployments, full-service setup</p>
-  </button>
-</div>
-
-<!-- Quote Forms -->
-<div class="quote-forms">
-  <div class="quote-form active" id="consumer-form">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWhi8dpX-m6xd2rXriRuFkEDdg8gQe-l6-jQ8S2IxKDe_8HA/viewform?embedded=true" width="640" height="3378" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-  </div>
-  <div class="quote-form" id="business-form">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSck35ShfVmYuo-ENBn8CbDZ7VGHro-yEIRwC0gcQjNEDhNBAQ/viewform?embedded=true" width="640" height="3615" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-  </div>
-</div>      </div>
+        <!-- Quote Forms -->
+        <div class="quote-forms fade-in">
+          <div class="quote-form active" id="consumer-form">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfWhi8dpX-m6xd2rXriRuFkEDdg8gQe-l6-jQ8S2IxKDe_8HA/viewform?embedded=true" 
+              title="Home / Personal Quote Form"
+              loading="lazy">
+              Loading…
+            </iframe>
+          </div>
+          <div class="quote-form" id="business-form">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSck35ShfVmYuo-ENBn8CbDZ7VGHro-yEIRwC0gcQjNEDhNBAQ/viewform?embedded=true" 
+              title="Business / Studio Quote Form"
+              loading="lazy">
+              Loading…
+            </iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -150,5 +268,33 @@
   </footer>
 
   <script src="js/main.js"></script>
+  
+  <!-- Quote Form Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const typeButtons = document.querySelectorAll('.quote-type-btn');
+      const consumerForm = document.getElementById('consumer-form');
+      const businessForm = document.getElementById('business-form');
+      
+      typeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const type = this.getAttribute('data-type');
+          
+          // Update active button
+          typeButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show correct form
+          if (type === 'consumer') {
+            consumerForm.classList.add('active');
+            businessForm.classList.remove('active');
+          } else {
+            businessForm.classList.add('active');
+            consumerForm.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
